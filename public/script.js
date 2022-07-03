@@ -799,7 +799,7 @@ class Controller {
         this.bot_timer = document.querySelector('.bottom-timer')
         this.top_timer = document.querySelector('.top-timer')
     }
-	
+
     init(){
         this.add_click_listener()
         this.set_timers()
@@ -847,6 +847,7 @@ class Controller {
     show_timers(){
         this.top_timer.style.display = 'block'
         this.bot_timer.style.display = 'block'
+		console.log("bibby")
     }
 
     set_timers(){

@@ -1,0 +1,527 @@
+
+
+:root {
+    --chess-dot-com-BLACK: #779556;
+    --chess-dot-com-WHITE: #EBECD0;
+    --lichess-BLACK: #B58863;
+    --lichess-WHITE: #966c2a;
+    --normal-WHITE: #DEDEDE;
+    --normal-BLACK: #808080;
+    --blue-WHITE: #EAE9D2;
+    --blue-BLACK: #4B7399;
+    
+    --BOARD-BACKGROUND: #312E2B;
+    --PERIPHERAL-BACKGROUND: #262521;
+    --promotion-white: #FFFFFF;
+    --general-background: #312E2B;
+    --specific-background: #262521;
+    --green-btn: #28A744;
+    --greener-btn: #478F42
+
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.game-page{
+    display: none;
+}
+
+.home-page{
+    background-color: white;
+    display: block;
+}
+
+.game-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.timer-container{
+    width: 600px;
+    display: flex;
+    justify-content: end;
+}
+
+.timer{ 
+    margin: 1em 0;
+    padding: 0.5em 1.5em;
+    display: none;
+    background-color: gray
+}
+
+.board-container{
+    height: 600px;
+    width: 600px;
+    position: relative;
+}
+
+.board {
+    background-color: var(--BOARD-BACKGROUND);
+    height: 600px;
+    width: 600px;
+}
+
+.screen{
+    height: 450px;
+    width: 300px;
+    background-color: white;
+    opacity: 93%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.wait-screen{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.end-screen{
+    display: none;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+/* REMATCH STUFF*/
+
+.rematch-container{
+    margin-top: 4em;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rematch-label{
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.btns-container{
+    margin-top: 0.5em;
+    position: relative
+}
+
+
+.rematch-btns {
+    color: white;
+    height: 2.2em;
+    width: 5.5em;
+    border-radius: 0.5em;
+    border: 0;
+    margin: 1em;
+    padding: 0 0.7em;
+}
+
+.rematch-btns:hover{
+    height: 2.1em;
+    width: 5.3em;
+    cursor: pointer;
+}
+
+.rematch-btns:active{
+    transform: translateY(4px)
+}
+
+.accept-button{
+    background-color: var(--chess-dot-com-BLACK);
+    position: absolute;
+    right: 25%
+}
+
+.decline-button{
+    background-color: #C51E3A;
+    position: absolute;
+    left: 25%
+}
+
+.close-container{
+    position: relative;
+    width: 300px
+}
+
+.close{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 20px;
+    background-color: gray;
+    color: white;
+    font-size: 1.5em;
+    border: 0;
+    position: absolute;
+    right: 0%;
+    margin: 0.2em;
+    border-radius: 0.2em;
+}
+
+.close:after{
+    content: "\00D7";
+}
+
+.close:hover{
+    cursor: pointer;
+    height: 22px;
+    width: 22px
+}
+
+.response-container{
+    width: 300px;
+    height: 100px;
+    margin-top: 4em;
+    position: relative;
+    display: none;
+}
+
+.waiting-for{
+    font-weight: bold;
+    font-size: 1.2em;
+    position: absolute;
+    left: 5%;
+}
+
+.rematch-response{
+    margin-left: 0.2em;
+    position: absolute;
+    font-size: 1.2em;
+    right: 8%;
+}
+
+.winner{
+    font-weight: bold;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    margin: 4em 0
+}
+
+.wait {
+    margin: 2em;
+}
+
+.waiting{
+    font-weight: bold;
+}
+
+.room_code{
+    font-weight: bold;
+}
+
+.side-bar {
+    display: flex;
+    justify-content: center
+}
+
+.horse-container {
+    display: flex;
+    justify-content: center;
+}
+
+.horse {
+    margin: 0.2em;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.square {
+    height: 75px;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative
+}
+
+.piece {
+    height: 50px;
+    width: 50px
+}
+
+.piece:active {
+    transform: translateY(10px);
+}
+
+
+.chess-dot-com-BLACK {
+    background-color: var(--chess-dot-com-BLACK);
+    color: var(--chess-dot-com-WHITE);
+}
+
+.chess-dot-com-WHITE {
+    background-color: var(--chess-dot-com-WHITE);
+    color: var(--chess-dot-com-BLACK); 
+}
+
+.lichess-BLACK{
+    background-color: var(--lichess-BLACK);
+    color: var(--lichess-WHITE);
+}
+
+.lichess-WHITE{
+    background-color: var(--lichess-WHITE);
+    color: var(--lichess-BLACK)
+}
+
+.blue-BLACK{
+    background-color: var(--blue-BLACK);
+    color: var(--blue-WHITE)
+}
+
+.blue-WHITE{
+    background-color: var(--blue-WHITE);
+    color: var(--blue-BLACK)
+}
+
+.normal-BLACK {
+    background-color: var(--normal-BLACK);
+    color: var(--normal-WHITE)
+}
+
+.normal-WHITE {
+    background-color: var(--normal-WHITE);
+    color: var(--normal-BLACK)
+}
+
+
+.promotion {
+    background-color: var(--promotion-white)
+}
+
+.main-nav {
+    display: none;
+    justify-content: center;
+    background-color: var(--PERIPHERAL-BACKGROUND);
+}
+
+.main-nav ul {
+    margin: 0.5em;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav li {
+    display: inline-block;
+    margin: 0em 1em;
+    color: white
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: white
+}
+
+.yellow {
+    background-color: yellow
+}
+
+.number-letter {
+    position: absolute;
+    margin: 0.2em;
+    font-weight: bold;
+}
+
+.number{
+    text-align: left;
+    top: 0;
+    left: 0;
+}
+
+.letter{
+    text-align: end;
+    bottom: 0;
+    right: 0;
+}
+
+.color-btn-container{
+    margin: 2em 0.5em
+}
+
+.banner-container{
+    background-color: var(--specific-background);
+    margin-bottom: 5em;
+    width: 100%;
+    text-align: center;
+    color: white
+}
+
+.banner{
+    margin: 1.5em;
+    text-align: center;
+    color: white;
+}
+
+.login{
+/*     background-color: var(--specific-background); */
+    background-color: var(--general-background);
+    height: 450px;
+    width: 300px;
+    /* Set out items within login window */
+/*     display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center; */
+    /* Center login element */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.first-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.second-container{
+    display: none;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.third-container{
+    display: none;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.btn{
+    background-color: var(--green-btn);
+/*     background-color: var(--chess-dot-com-BLACK); */
+    height: 2em;
+    width: 10em;
+    border: 0;
+    margin-bottom: 1em;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+
+.new-game-link{
+    text-decoration: none;
+    color: white;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: var(--greener-btn);
+}
+
+.btn:active{
+    transform: translateY(2px);
+}
+
+.game-input{
+    width: 180px;
+    height: 30px;
+    margin: 1em;
+    font-weight: bold;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    outline: none
+}
+
+.or-label{
+    color: white;
+    font-weight: bold;
+}
+
+.mode-or-label{
+    margin-bottom: 1em;
+    color: white;
+    font-weight: bold;
+
+}
+
+
+/* .board-container{
+    position: relative;
+    height: 800px;
+    width: 1400px
+}
+
+
+.board {
+    background-color: var(--BOARD-BACKGROUND);
+    position: absolute;
+    left: 50%;
+    height: 600px;
+    width: 600px;
+    transform: translate(-50%, 0%)
+}
+
+.wait-screen{
+    height: 400px;
+    width: 200px;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, +20%)
+} */
+
+
+
+
+
+
+
+
+/*
+FLEXBOX STUFF:
+-justify content (positions on main axis)
+-align items (positions on cross axis)
+-align content (only for multiline containers)
+
+*/
+
+/* .flexbox-container {
+    margin: 3em;
+    height: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: yellow;
+    justify-content: center;
+    align-content: center
+}
+
+.flexbox-item {
+    background-color: grey;
+    margin: 10px;
+    border: 3px;
+    width: 200px;
+    padding: 5px;
+}
+
+.flexbox-item-1 {
+    min-height: 100px
+}
+
+.flexbox-item-2 {
+    min-height: 200px
+}
+
+.flexbox-item-3 {
+    min-height: 300px
+} */

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/board_styles.css">
+    <link rel="shortcut icon" href="#">
+    <title>GIGGY GUY CHESS</title>
+    <link rel="icon" href="actual_pieces/gigskin.png">
+</head>
+<body>
+<div class="page home-page">
+    <div class="login">
+        <div class="banner-container">
+            <h2>GIGGY GUY CHESS</h2>
+        </div>
+        <div class="first-container">
+            <div class="create-game-btn-container">
+                <button class="btn create-game-btn">Create Game</button>
+            </div>
+            <label class="or-label">OR</label>
+            <input class="game-input" placeholder="Enter game code...">
+            <div class="join-game-btn-container">
+                <button class="btn join-game-btn">Join Game</button>
+            </div>
+        </div>
+        <div class="second-container">
+            <button class="btn mode_btn regular mode_0">Regular</button>
+            <label class="mode-or-label">OR</label>
+            <button class="btn mode_btn fischer mode_1">Fischer Random</button>
+            <button class="btn mode_btn Kings_Queens mode_2">Racky Special</button>
+            <button class="btn mode_btn Kings_Queens_Knights mode_3">Racky Special+</button>
+        </div>
+        <div class="third-container">
+            <button class="btn time_btn min_01">1 MIN</button>
+            <button class="btn time_btn min_03">3 MINS</button>
+            <button class="btn time_btn min_05">5 MINS</button>
+            <button class="btn time_btn min_10">10 MINS</button>
+        </div>
+    </div>
+</div>
+
+<div class="page game-page">
+    <nav class="nav main-nav">
+        <ul>
+            <li>Home</li>
+            <li>Play</li>
+            <li>Settings</li>
+        </ul>
+    </nav>
+    <div class="side-bar">
+        <div class="settings-container">
+            <div class="color-btn-container">
+                <button class="color-btn chess-dot-com">Chess.com</button>
+                <button class="color-btn lichess">Lichess</button>
+                <button class="color-btn normal">Black & White</button>
+                <button class="color-btn blue">Blue</button>
+            </div>
+            <div class="horse-container">
+                <button class="horse horse-btn">horse</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="game-container">
+        <div class="timer-container">
+            <label class="timer top-timer"></label>
+        </div>
+        <div class="board-container">
+            <div class="board"></div>
+            <div class="screen wait-screen">
+                <div class="wait waiting">Waiting for player...</div>
+                <div class="wait room_code"></div>
+            </div>
+            <div class="screen end-screen">
+                <div class="close-container">
+                    <button class="close"></button>
+                </div>
+                <label class="winner">A giggy guy won!</label>
+                <button class="btn rematch-btn">Rematch</button>
+                <button class="btn new-game-btn"><a href="http://rack.giggyguychess.com" class="new-game-link">New
+                    Game</a></button>
+                <div class="rematch-container">
+                    <label class="rematch-label">Giggy requested a rematch...</label>
+                    <div class="btns-container">
+                        <button class="rematch-btns accept-button">Accept</button>
+                        <button class="rematch-btns decline-button">Decline</button>
+                    </div>
+                </div>
+                <div class="response-container">
+                    <label class="waiting-for">Rematch requested...</label>
+                    <label class="rematch-response"></label>
+                </div>
+            </div>
+        </div>
+        <div class="timer-container">
+            <label class="timer bottom-timer"></label>
+        </div>
+    </div>
+
+
+</div>
+<div class="square-8-8 yellow"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="script.js"></script>
+<script src="setup.js"></script>
+</body>
+</html>

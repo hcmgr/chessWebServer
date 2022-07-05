@@ -805,6 +805,7 @@ class Controller {
         this.set_timers()
         this.show_timers()
         this.start_timer()
+		this.start_game()
         if (this.turn === this.player_colour){
             this.bot_timer.style.backgroundColor = 'white'
         }
@@ -847,7 +848,6 @@ class Controller {
     show_timers(){
         this.top_timer.style.display = 'block'
         this.bot_timer.style.display = 'block'
-		console.log("bibby")
     }
 
     set_timers(){
@@ -856,8 +856,12 @@ class Controller {
     }
 
     start_timer(){
-        this.timer = setInterval(this.decrement_time.bind(this), 1000)
+        //this.timer = setInterval(this.decrement_time.bind(this), 1000)
     }
+
+	start_game(){
+		socket.emit('start-game')
+	}
 
     decrement_time(){
         if (this.turn === this.player_colour){this.time--}
@@ -878,7 +882,8 @@ class Controller {
     }
 
     stop_timer(){
-        clearInterval(this.timer)
+        //clearInterval(this.timer)
+		socket.emit('stop-timer')
     }
 
     clear_clicks()
@@ -889,6 +894,7 @@ class Controller {
         if (this.turn === 'w'){this.turn = 'b'}
         else {this.turn = 'w'}
         this.clicks = []
+		socket.emit('change-turn', this.turn)
 
         //timer colour stuff
         if (this.turn === this.player_colour){
@@ -1342,6 +1348,7 @@ class Controller {
         this.turn = 'w'
         this.time = this.time_original
         this.other_time = this.time_original
+		socket.emit('set-game-time', this.time_original)
         this.player_colour = this.model.get_bottom_colour()
         this.other_player_colour = this.model.get_top_colour()
         this.castling_status = false
@@ -1355,6 +1362,7 @@ class Controller {
         this.set_timers()
         setTimeout(()=>{
             this.start_timer()
+			this.start_game()
         }, 1000)
     }
 }

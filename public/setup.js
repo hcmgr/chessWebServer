@@ -145,6 +145,10 @@ class GameSetup
         socket.on('rematch-resp-receive', (answer) => {this.rematch_resp_receive(answer, true)})
         socket.on('spectator-mode', this.spectator_mode.bind(this))
 
+		socket.on('decrement-timer', (times) => {
+			this.controller.decrement_time();
+		})
+
         socket.on('move', (squares) => {
             this.controller.move(squares[0], squares[1])
             if (!this.castling_status)

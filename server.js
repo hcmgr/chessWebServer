@@ -3,6 +3,7 @@ const http = require('http')
 const express = require('express')
 const socket = require('socket.io')
 const app = express()
+require('dotenv').config()
 
 //create http server that runs our express app
 const server = http.createServer(app)
@@ -56,6 +57,10 @@ class Room{
 let game_mode
 let game_time
 let rand_cols
+let times = []
+let timer
+//store times of white and black (in that order)
+
 
 //room_code --> room_object
 let rooms = new Map()
@@ -67,12 +72,18 @@ io.on('connection', (socket) => {
         socket.emit('start-game-client')
     })
 
+	let turn = 'w'
+	function decrementTimes(turn, room_code){
+		turn === 'w' ? times[0]-- : times[1]--
+		io.in(room_code).emit('decrement-timer', times)
+	}
+
     socket.on('can-join-room', (room_code) => {
         io.emit('can-join-room-resp', rooms.get(room_code))
     }) 
     
     socket.on('set-game-mode', (mode) => {game_mode = mode})
-    socket.on('set-game-time', (time) => {game_time = time})
+    socket.on('set-game-time', (time) => {game_time = time; times = [game_time*60, game_time*60]})
     socket.on('set-rand-cols', (cols) => {rand_cols = cols})
 
     socket.on('create-room', (room_code) => {
@@ -99,6 +110,12 @@ io.on('connection', (socket) => {
         socket.on('remove-piece', (sq) => {
             socket.to(room_code).emit('remove-piece', sq)
         })
+		socket.on('change-turn', (changedTurn) => {
+			turn = changedTurn
+		})
+		socket.on('stop-timer', () => {
+			clearInterval(timer)
+		})
         socket.on('end-game-self', (winner, method) => {
             socket.emit('end', winner, method)
         })
@@ -141,6 +158,18 @@ io.on('connection', (socket) => {
                     socket.on('remove-piece', (sq) => {
                         socket.to(room_code).emit('remove-piece', sq)
                     })
+
+					socket.on('change-turn', (changedTurn) => {
+						turn = changedTurn
+					}
+					)
+					function decrementTimesCaller(){
+						decrementTimes(turn, room_code)
+					}
+
+					socket.on('start-game', () => {
+						timer = setInterval(decrementTimesCaller, 1000)
+					})
                     socket.on('end-game-self', (winner, method) => {
                         socket.emit('end', winner, method)
                     })

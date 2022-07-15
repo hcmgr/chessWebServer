@@ -10,10 +10,10 @@ const server = http.createServer(app)
 //adds sockets to said server
 const io = socket(server)
 
-//key: room_code, value: room_object
+const port = process.env.PORT || 80
 
-server.listen(process.env.PORT || 80, () => {
-    console.log("server running...")
+server.listen(port, () => {
+    console.log(`server running on port ${port}...`)
 })
 
 app.use(express.static(path.join(__dirname, 'public')))
